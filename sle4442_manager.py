@@ -41,7 +41,8 @@ WRITE_SEC_APDU = [0xFF, 0xD2, 0x01, 0x00, 0x03]  # + 3 bytes new PSC
 # https://www.hidglobal.com/sites/default/files/documentlibrary/plt-03099_a.5_-_omnikey_sw_dev_guide_0.pdf
 OMNIKEY_WRITE_APDU = [0xFF, 0xD6, 0x00]          # + addr + length + data
 OMNIKEY_CHANGE_PIN_APDU = [0xFF, 0x21, 0x00, 0x00, 0x06] # + 3 bytes old PSC + 3 bytes new PSC
-#OMNIKEY_READ_PROT_APDU = [0xFF, 0x3A, ... ]
+OMNIKEY_READ_PROT_APDU = [0xFF, 0xB0, 0x01, 0x00, 0x04]  # READ BINARY at 0x0100
+OMNIKEY_READ_SEC_APDU  = [0xFF, 0xB0, 0x01, 0x04, 0x04]  # READ BINARY at 0x0104
 
 
 # Card constants
@@ -336,7 +337,8 @@ class SLE4442Interface:
         Note: Protection bits themselves can be written to protect memory,
               but once set to 0 (protected), they cannot be changed back to 1.
         """
-        resp = self.transmit(READ_PROT_APDU)
+        apdu = OMNIKEY_READ_PROT_APDU if self.is_omnikey else READ_PROT_APDU
+        resp = self.transmit(apdu)
         return self._check_response(resp, "Read protection")
 
     def read_security(self):
@@ -354,7 +356,8 @@ class SLE4442Interface:
         Note: Some readers (notably OMNIKEY) may not support this command.
               In that case, an INSNotSupportedError will be raised.
         """
-        resp = self.transmit(READ_SEC_APDU)
+        apdu = OMNIKEY_READ_SEC_APDU if self.is_omnikey else READ_SEC_APDU
+        resp = self.transmit(apdu)
         return self._check_response(resp, "Read security")
 
     def is_byte_protected(self, address):
@@ -1819,17 +1822,19 @@ if __name__ == "__main__":
             if reader_info['is_omnikey']:
                 info_text += (
                     "• Write memory: FF D6 [ADDR] [LEN] [DATA...]\n"
+                    "• Read protection: FF B0 01 00 04\n"
+                    "• Read security: FF B0 01 04 04\n"
                     "• Change PIN: FF 21 00 00 06 [OLD PSC] [NEW PSC]\n"
                 )
             else:
                 info_text += (
                     "• Write memory: FF D0 [ADDR] [LEN] [DATA...]\n"
+                    "• Read protection: FF B2 00 00 04\n"
+                    "• Read security: FF B2 01 00 04\n"
                     "• Change PIN: FF D2 01 00 03 [NEW PSC 3 bytes] (must unlock first)\n"
                 )
 
             info_text += (
-                "• Read protection: FF B2 00 00 04\n"
-                "• Read security: FF B2 01 00 04\n"
                 "• Unlock: FF 20 00 00 03 [PSC 3 bytes]"
             )
 
@@ -1852,18 +1857,21 @@ if __name__ == "__main__":
 
             templates_layout = QtWidgets.QHBoxLayout()
 
-            templates = [
-                ("Read 256 bytes", "FF B0 00 00 FF"),
-                ("Read Protection", "FF B2 00 00 04"),
-                ("Read Security", "FF B2 01 00 04"),
-            ]
-
-            # Add write template based on reader type
             if reader_info['is_omnikey']:
-                templates.append(("Write 1 byte (OMNIKEY)", "FF D6 00 00 01 FF"))
-                templates.append(("Change PIN (OMNIKEY)", "FF 21 00 00 06 FFFFFF 123456"))
+                templates = [
+                    ("Read 256 bytes", "FF B0 00 00 FF"),
+                    ("Read Protection", "FF B0 01 00 04"),
+                    ("Read Security", "FF B0 01 04 04"),
+                    ("Write 1 byte", "FF D6 00 00 01 FF"),
+                    ("Change PIN", "FF 21 00 00 06 FFFFFF 123456"),
+                ]
             else:
-                templates.append(("Write 1 byte", "FF D0 00 00 01 FF"))
+                templates = [
+                    ("Read 256 bytes", "FF B0 00 00 FF"),
+                    ("Read Protection", "FF B2 00 00 04"),
+                    ("Read Security", "FF B2 01 00 04"),
+                    ("Write 1 byte", "FF D0 00 00 01 FF"),
+                ]
 
             for name, apdu in templates:
                 btn = QtWidgets.QPushButton(name)
