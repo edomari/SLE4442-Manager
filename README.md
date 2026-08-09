@@ -11,6 +11,9 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 
 ## Features
 - **Read and Write card memory**
+- **Interactive byte-by-byte grid editing** with unsaved changes tracking (highlights modified bytes)
+- **Dynamic grid formatting** (switch between 8, 16, and 32 columns instantly)
+- **Theme support** featuring a modern Default (Fusion) style and a retro Windows XP mode
 - **Import/Export** raw HEX format files
 - **Read security memory** (error counter and protection bits)
 - **Unlock and Change PSC** (PIN)
@@ -20,6 +23,12 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 - **Full CLI support** for automation and scripting
 
 ## Screenshots
+
+### Interactive Memory Grid
+<p align="center"><img width="700" alt="Interactive memory grid with unsaved changes" src="images/grid.png" /></p>
+
+### Two Themes
+<p align="center"><img width="700" alt="Windows XP Theme" src="images/windowsxp_theme.png" /></p>
 
 ### Read Operations
 <p align="center"><img width="700" alt="Read card memory" src="https://github.com/user-attachments/assets/9298edc5-a93b-4b7c-aacd-925f1c2f8aa0" /></p>
@@ -45,4 +54,3 @@ pip install PyQt5 # Optional, for GUI mode
 
 python sle4442_manager.py
 python sle4442_manager.py --nogui # for CLI mode
-```
