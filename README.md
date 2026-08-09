@@ -27,9 +27,6 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 ### Interactive Memory Grid
 <p align="center"><img width="700" alt="Interactive memory grid with unsaved changes" src="images/grid.png" /></p>
 
-### Two Themes
-<p align="center"><img width="700" alt="Windows XP Theme" src="images/windowsxp_theme.png" /></p>
-
 ### Read Operations
 <p align="center"><img width="700" alt="Read card memory" src="https://github.com/user-attachments/assets/9298edc5-a93b-4b7c-aacd-925f1c2f8aa0" /></p>
 
@@ -45,6 +42,9 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 
 ### Raw APDU and Logs
 <p align="center"><img width="700" alt="Raw APDU commands and logging" src="https://github.com/user-attachments/assets/61274054-01b9-42db-99ad-3398b07c3bfd" /></p>
+
+### Windows XP Theme
+<p align="center"><img width="700" alt="Windows XP Theme" src="images/windowsxp_theme.png" /></p>
 
 ## Quick Start
 
