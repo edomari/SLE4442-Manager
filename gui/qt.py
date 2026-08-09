@@ -1,10 +1,11 @@
 from sle4442 import *
 from datetime import datetime
 import hashlib
+import os
 
 try:
     from PyQt5 import QtWidgets, QtGui, QtCore
-
+    os.environ["QT_LOGGING_RULES"] = "qt.qpa.wayland*=false"
     HAS_QT = True
 except Exception:
     HAS_QT = False
