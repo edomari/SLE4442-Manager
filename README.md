@@ -41,10 +41,8 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 
 ```bash
 pip install pyscard
-pip install PyQt5 --config-settings --confirm-license # Optional, for GUI mode
-
+pip install PyQt5 # Optional, for GUI mode
 
 python sle4442_manager.py
-
 python sle4442_manager.py --nogui # for CLI mode
 ```
