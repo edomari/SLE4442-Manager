@@ -11,9 +11,6 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 
 ## Features
 - **Read and Write card memory**
-- **Interactive byte-by-byte grid editing** with unsaved changes tracking (highlights modified bytes)
-- **Dynamic grid formatting** (switch between 8, 16, and 32 columns instantly)
-- **Theme support** featuring a modern Default (Fusion) style and a retro Windows XP mode
 - **Import/Export** raw HEX format files
 - **Read security memory** (error counter and protection bits)
 - **Unlock and Change PSC** (PIN)
@@ -21,6 +18,11 @@ Thanks to [@luu176](https://github.com/luu176/SLE4442-Card-Manager) and [@hvfran
 - **Multiple reader support** with automatic detection
 - **APDU logging** for debugging
 - **Full CLI support** for automation and scripting
+
+**GUI Overhaul (added by [@edomari](https://github.com/edomari)):**
+- **Interactive byte-by-byte grid editing** with unsaved changes tracking (highlights modified bytes)
+- **Dynamic grid formatting** (switch between 8, 16, and 32 columns instantly)
+- **Theme support** featuring a retro Windows XP mode
 
 ## Screenshots
 
