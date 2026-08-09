@@ -1,7 +1,7 @@
-from config import *
+from helpers.config import *
 from smartcard.scard import *
-from utils import *
-from exceptions import *
+from helpers.utils import *
+from helpers.exceptions import *
 
 # Card interface class
 class SLE4442Interface:

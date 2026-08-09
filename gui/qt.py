@@ -1,4 +1,4 @@
-from sle4442 import *
+from smartcard.sle4442 import *
 from datetime import datetime
 import hashlib
 import os
