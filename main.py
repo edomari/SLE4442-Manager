@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from smartcard.CLI import *
+from card.CLI import *
 from gui.qt import *
 
 # PyQt GUI

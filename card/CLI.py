@@ -1,4 +1,4 @@
-from sle4442 import *
+from card.sle4442 import *
 from datetime import datetime
 import sys
 import base64
